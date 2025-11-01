@@ -1,0 +1,113 @@
+/* 1. Importation de la bonne police */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* 2. Le conteneur de toute la page */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #222222;
+  padding: 2rem;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* 3. La boîte de formulaire (blanche) */
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  background: #FFFFFF;
+  /* CORRECTION: Ligne changée */
+  border-radius: 0px; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  padding: 0;
+  overflow: hidden; 
+}
+
+/* 4. Le "Switcher" (les 2 blocs rouges) */
+.auth-switcher {
+  display: flex;
+}
+
+.auth-switcher-btn {
+  width: 50%; 
+  padding: 1rem; 
+  border: none;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  /* CORRECTION: S'assurer qu'il n'y a pas de radius */
+  border-radius: 0px;
+}
+.auth-switcher-btn.active {
+  background: #E31C25; /* Rouge vif */
+}
+.auth-switcher-btn.inactive {
+  background: #BB000E; /* Rouge foncé */
+}
+
+/* 5. Le corps du formulaire (la partie blanche sous le switcher) */
+.auth-form-body {
+  padding: 2.5rem; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* 6. Le titre "Sign in with..." */
+.auth-form-title {
+  font-size: 19px;
+  color: #1C1C1E;
+  text-align: center;
+  margin-bottom: 2.5rem; 
+}
+
+/* 7. Le style des champs (design "underline") */
+.auth-input-field {
+  display: flex;
+  border-bottom: 1px solid #BB000E;
+  padding-bottom: 8px;
+  margin-bottom: 2.5rem; 
+}
+.auth-input-field .icon {
+  color: rgba(0, 0, 0, 0.4);
+  margin-right: 15px;
+  font-size: 16px;
+  margin-top: 2px; 
+}
+.auth-input-field .label {
+  color: #1C1C1E;
+  font-size: 16px;
+  margin-right: 5px;
+  white-space: nowrap; 
+}
+.auth-input-field input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #1C1C1E;
+  font-size: 16px;
+}
+
+/* 8. Le wrapper pour le bouton "Sign In" */
+.auth-submit-wrapper {
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 1rem;
+}
+
+/* 9. Le bouton "Sign In" (design Figma) */
+.auth-submit-btn.btn {
+  background: #BB000E;
+  color: #FFFFFF;
+  padding: 0.5rem 1rem; 
+  font-size: 15px;
+  gap: 0.5rem;
+  /* CORRECTION: S'assurer qu'il n'y a pas de radius */
+  border-radius: 0px;
+}
+

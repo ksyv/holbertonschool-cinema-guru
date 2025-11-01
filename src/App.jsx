@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 // 1. Importer les composants (qui sont maintenant nos placeholders)
-import Authentication from './routes/Authentication';
+import Authentication from './routes/auth/Authentication';
 import Dashboard from './routes/Dashboard';
 
 // On définit la base de l'URL de l'API ici (backend Docker)
