@@ -1,24 +1,50 @@
 import React, { useState } from 'react';
-import './auth.css'; // On importe le NOUVEAU auth.css
+import axios from 'axios';
+import './auth.css'; 
 
 import Login from './Login';
 import Register from './Register';
 
 export default function Authentication({ setIsLoggedIn, setUserUsername }) {
   
-  // _switch = true  -> Vue Login (active)
-  // _switch = false -> Vue Register (active)
   const [ _switch, set_switch ] = useState(true); 
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
 
-  // La logique de soumission (sera gérée à la Tâche 5)
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); 
-    if (_switch) {
-      console.log('Tentative de connexion (LOGIN)');
-    } else {
-      console.log('Tentative d\'inscription (REGISTER)');
+    
+    const data = {
+      username: username,
+      password: password
+    };
+
+    const BASE_URL = 'http://localhost:8000';
+
+    const url = _switch
+      ? `${BASE_URL}/api/auth/login`
+      : `${BASE_URL}/api/auth/register`;
+
+    const actionText = _switch ? 'connexion' : 'inscription';
+
+    try {
+      const response = await axios.post(url, data);
+
+      const { accessToken } = response.data;
+
+      localStorage.setItem('accessToken', accessToken);
+
+      setUserUsername(username);
+      setIsLoggedIn(true);
+
+    } catch (error) {
+      console.error(`Erreur lors de l'${actionText}:`, error);
+      
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert(`Échec de l'${actionText}.`);
+      }
     }
   };
 
@@ -26,7 +52,6 @@ export default function Authentication({ setIsLoggedIn, setUserUsername }) {
     <div className="auth-page">
       <div className="auth-container">
         
-        {/* 1. Le "Switcher" (les 2 blocs rouges) */}
         <div className="auth-switcher">
           <button
             type="button" 
@@ -44,11 +69,8 @@ export default function Authentication({ setIsLoggedIn, setUserUsername }) {
           </button>
         </div>
 
-        {/* 2. Le corps du formulaire (blanc) */}
-        {/* On passe la fonction handleSubmit au <form> */}
         <form className="auth-form-body" onSubmit={handleSubmit}>
           
-          {/* On affiche Login ou Register selon l'état _switch */}
           {_switch ? (
             <Login
               username={username}
