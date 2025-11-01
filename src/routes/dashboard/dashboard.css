@@ -6,11 +6,27 @@ body {
   background-color: #222222;
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
-.dashboard-container {
-  width: 100%;
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  background-color: #222222;
+}
+
+.dashboard-body {
+  display: flex;
+  flex-grow: 1;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding-left: 50px;
+  transition: padding-left 0.3s ease;
+}
+
+.sidebar-expanded .dashboard-content {
+  padding-left: 218px;
 }
 

@@ -1,0 +1,23 @@
+.activity-item {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  color: #FFFFFF;
+}
+
+.activity-item .username {
+  color: #F31D27;
+  font-weight: 700;
+}
+
+.activity-item .movie-title {
+  color: #F31D27;
+  font-weight: 700;
+}
+
+.activity-item .date {
+  font-size: 10px;
+  color: #AAAAAA;
+  display: block;
+}

@@ -1,57 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css';
+import { useState, useEffect } from 'react'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import './App.css'
 
-import Authentication from './routes/auth/Authentication'; 
-import Dashboard from './routes/dashboard/Dashboard'; 
+import Authentication from './routes/auth/Authentication'
+import Dashboard from './routes/dashboard/Dashboard'
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userUsername, setUserUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userUsername, setUserUsername] = useState("")
+  const navigate = useNavigate()
 
   useEffect(() => {
     const checkUserToken = async () => {
-      const accessToken = localStorage.getItem('accessToken');
-      
+      const accessToken = localStorage.getItem('accessToken')
       if (accessToken) {
-        const BASE_URL = 'http://localhost:8000';
         try {
           const response = await axios.post(
-            `${BASE_URL}/api/auth/`, 
-            null,
+            'http://localhost:8000/api/auth/', 
+            null, 
             {
-              headers: {
-                'Authorization': `Bearer ${accessToken}`
-              }
+              headers: { 'Authorization': `Bearer ${accessToken}` }
             }
-          );
-          
-          setUserUsername(response.data.username);
-          setIsLoggedIn(true);
-
+          )
+          setUserUsername(response.data.username)
+          setIsLoggedIn(true)
         } catch (error) {
-          console.error("Session invalide:", error);
-          localStorage.removeItem('accessToken'); 
-          setIsLoggedIn(false);
+          console.error("Token verification failed", error)
+          setIsLoggedIn(false)
+          localStorage.removeItem('accessToken')
         }
+      } else {
+        setIsLoggedIn(false)
       }
-    };
+    }
+    checkUserToken()
+  }, [isLoggedIn])
 
-    checkUserToken();
-  }, []); 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/')
+    } else {
+      navigate('/home')
+    }
+  }, [isLoggedIn, navigate])
 
   return (
-    <div className="App">
-      {isLoggedIn ? (
-        <Dashboard userUsername={userUsername} />
+    <Routes>
+      {!isLoggedIn ? (
+        <Route 
+          path="/" 
+          element={
+            <Authentication 
+              setIsLoggedIn={setIsLoggedIn} 
+              setUserUsername={setUserUsername} 
+            />
+          } 
+        />
       ) : (
-        <Authentication 
-          setIsLoggedIn={setIsLoggedIn} 
-          setUserUsername={setUserUsername} 
+        <Route 
+          path="/*" 
+          element={
+            <Dashboard 
+              userUsername={userUsername} 
+              setIsLoggedIn={setIsLoggedIn} 
+            />
+          } 
         />
       )}
-    </div>
-  );
+    </Routes>
+  )
 }
 
-export default App;
+export default App
