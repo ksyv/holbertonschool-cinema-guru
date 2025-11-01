@@ -1,0 +1,110 @@
+/* Définition de variables de couleur pour un thème sombre "cinéma" */
+:root {
+  --color-bg-primary: #141414; /* Noir/Gris très foncé */
+  --color-bg-secondary: #242424; /* Gris foncé pour les inputs */
+  --color-text-primary: #f5f5f5; /* Blanc cassé */
+  --color-text-secondary: #aaa;  /* Gris clair pour placeholders/labels */
+  --color-accent: #e50914;      /* Rouge "Netflix" */
+}
+
+/* --- Style pour Input et SelectInput --- */
+.input-wrapper {
+  position: relative; /* Nécessaire pour positionner l'icône */
+  display: flex;
+  flex-direction: column; /* Label au-dessus de l'input */
+  margin-bottom: 1rem; /* Espace entre les champs */
+  width: 100%;
+}
+
+.input-wrapper label {
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box; /* Assure que padding ne change pas la largeur */
+}
+
+/* Style pour l'icône dans l'input */
+.input-icon {
+  position: absolute;
+  top: 50%; /* Centre verticalement (approximatif) */
+  left: 10px;
+  color: var(--color-text-secondary);
+  /* Ajustement si le label est au-dessus */
+  top: 38px; 
+}
+
+/* Si l'icône est présente, ajouter un padding à l'input */
+.input-wrapper input:has(.input-icon) {
+  padding-left: 35px;
+}
+
+/* --- Style pour Button --- */
+.btn {
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Espace entre l'icône et le texte */
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #f40612; /* Rouge un peu plus vif au survol */
+}
+
+/* Classe de variation (exemple) */
+.btn-secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+.btn-secondary:hover {
+  background-color: #333;
+}
+
+
+/* --- Style pour SearchBar --- */
+.search-bar-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+}
+
+.search-input {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: 25px; /* Bord arrondi pour la recherche */
+  padding: 0.75rem 1rem 0.75rem 3rem; /* Espace pour l'icône à gauche */
+  width: 100%;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: var(--color-text-secondary);
+}
