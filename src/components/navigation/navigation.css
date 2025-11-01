@@ -1,0 +1,53 @@
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #161616;
+  height: 62px;
+  padding: 0 2rem;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar img {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  border: 3px solid #BB000E;
+  object-fit: cover;
+}
+
+.user-welcome p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.user-welcome span {
+  font-weight: 700;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #BB000E;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+

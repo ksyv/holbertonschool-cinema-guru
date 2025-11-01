@@ -3,7 +3,7 @@ import axios from 'axios';
 import './App.css';
 
 import Authentication from './routes/auth/Authentication'; 
-import Dashboard from './routes/Dashboard'; 
+import Dashboard from './routes/dashboard/Dashboard'; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
